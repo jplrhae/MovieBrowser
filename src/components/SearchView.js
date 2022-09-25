@@ -9,7 +9,7 @@ const MovieCard = ({ movie }) => {
   } else {
     posterUrl = moviePoster;
   }
-  const detailUrl = `/movies/${movie.id}`
+  const detailUrl = `/movies/${movie.id}`;
   return (
     <div className="col-lg-3 col-md-3 col-2 my-4">
       <div className="card">
@@ -36,13 +36,19 @@ const SearchView = ({ keyword, searchResults }) => {
     return <MovieCard movie={obj} key={i} />;
   });
 
+  const hasResults = resultsHtml.length > 0;
+
+  console.log(resultsHtml);
+
   return (
     <>
       <Hero text={title} />
-      {resultsHtml && (
+      {hasResults ? (
         <div className="container">
           <div className="row">{resultsHtml}</div>
         </div>
+      ) : (
+        <h3 className="text-center my-4">{`I'm sorry, but we couldn't find anything matching ${keyword} :(`}</h3>
       )}
     </>
   );
